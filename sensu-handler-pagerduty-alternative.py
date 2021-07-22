@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-This module provides a handler for use with Sensu Go (https://sensuapp.com//)
+This module provides a handler for use with Sensu Go (https://sensu.io/)
 
 The intent of this module was to provide a mechanism for being able to pass a data structure
 (not just a string) through to the details of a PagerDuty alert.
@@ -79,8 +79,8 @@ def parse_args():
     parser.add_argument(
         "-s", "--status",
         type=int,
-        help="Status of the check.  Can be set with PAGERDUTY_STATUS env var.  Defaults to value" \
-             "of check status.  Valid values: 0 (Ok), 1 (Warning), 2 (Critical)",
+        help="Status of the check.  Can be set with PAGERDUTY_STATUS env var.  Defaults to " \
+             "value of check status.  Valid values: 0 (Ok), 1 (Warning), 2 (Critical)",
         choices=[0, 1, 2],
     )
 
