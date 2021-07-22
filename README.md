@@ -3,6 +3,18 @@
 
 ## Table of Contents
 
+ - [Overview](#overview)
+ - [Usage examples](#usage-examples)
+   - [Help output](#help-output)
+   - [Deduplication key](#deduplication-key)
+   - [Summary](#summary)
+   - [Source](#source)
+   - [Status](#status)
+   - [Details](#details)
+ - [Configuration](#configuration)
+   - [Installation](#installation)
+   - [Handler definition](#handler-definition)
+ - [Environment variables](#environment-variables)
 
 ## Overview
 
