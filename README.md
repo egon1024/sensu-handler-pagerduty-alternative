@@ -18,11 +18,11 @@
 
 ## Overview
 
-This Python package provides an alternative [Sensu Go](https://sensu.io/) [handler](https://docs.sensu.io/sensu-go/latest/observability-pipeline/observe-process/handlers/) for communicating with [PagerDuty](https://pagerduty.com/).  
+This Python package provides an alternative [Sensu Go](https://sensu.io/) [handler](https://docs.sensu.io/sensu-go/latest/observability-pipeline/observe-process/handlers/) for communicating with [PagerDuty](https://pagerduty.com/).  Originally authored under the auspices of my day job at [DigitalOcean](https://www.digitalocean.com/) and released as open source with their gracious permission.
 
-While [the one that is released](https://github.com/sensu/sensu-pagerduty-handler) by the good folks at [Sensu](https://sensu.io/), there was one piece of functionality it did not have that I needed.  Specifically, I had the need to be able to customize the data structure that is sent in the customer details section of an incident.  
+While there is a [handler](https://github.com/sensu/sensu-pagerduty-handler) released by the good folks at [Sensu](https://sensu.io/), there was one piece of functionality it did not have that I needed.  Specifically, I had the need to be able to customize the data structure that is sent to [PagerDuty](https://pagerduty.com/) in the customer details section of an incident.
 
-I want to be clear that this handler is far inferior to [the one provided](https://github.com/sensu/sensu-pagerduty-handler) and that unless you have the same specific needs that I had, you are most likely better off using that one instead.
+I want to be clear that this handler is **far** inferior to [the one provided](https://github.com/sensu/sensu-pagerduty-handler) and that unless you have the same specific need that I have, you are almost definitely better off using theirs instead.
 
 ## Usage examples
 
