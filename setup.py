@@ -16,6 +16,6 @@ setup(
     author_email='cole.tuininga+sensu-handler@gmail.com',
     description='A Sensu Go handler to communicate with PagerDuty',
     long_description=readme,
-    scripts=['sensu-handler-pagerduty-alternative.py'],
+    scripts=['sensu_handler_pagerduty_alternative.py'],
     install_requires=requirements,
 )

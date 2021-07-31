@@ -29,7 +29,7 @@ I want to be clear that this handler is far inferior to [the one provided](https
 ### Help output
 
 ```
-usage: sensu-handler-pagerduty-alternative.py [-h] [-k DEDUP_KEY] [-d DETAILS] [-S SUMMARY]
+usage: sensu_handler_pagerduty_alternative.py [-h] [-k DEDUP_KEY] [-d DETAILS] [-S SUMMARY]
                                               [--source SOURCE] [-s {0,1,2}] -t TOKEN
 
 sensu-go handler for sending data to pagerduty

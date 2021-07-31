@@ -10,6 +10,8 @@ While similar to the PagerDuty handler from the folks as Sensu, there are some d
 interface and attention should be paid to the documentation when using it.
 """
 
+# pylint disable=c0103
+
 # Built in imports
 import argparse
 import json
@@ -21,20 +23,21 @@ import sys
 # 3rd party imports
 from pdpyras import EventsAPISession
 
-TEMPLATE_RE = re.compile(r"^{{\s*([a-zA-Z0-9._]+)\s*}}\s*$")
+TEMPLATE_RE = re.compile(r"^\s*{{\s*([a-zA-Z0-9._\ ]+)\s*}}\s*$")
+
 
 def main():
     """
     Main execution flow
     """
 
-    args = parse_args()
+    args = parse_args(sys.argv[1:])
     event = json.loads(sys.stdin.read())
     set_default_args(args, event)
     send_to_pd(args)
 
 
-def parse_args():
+def parse_args(args):
     """
     Parse command line arguments
     """
@@ -47,7 +50,7 @@ def parse_args():
     parser.add_argument(
         "-k", "--dedup-key",
         type=str,
-        help="String to use to identify the alert, for deduplication purposes. Can be set with " \
+        help="String to use to identify the alert, for deduplication purposes. Can be set with "
              "PAGERDUTY_DEDUP_KEY env var. Defaults to \"{namespace}_{host}_{check name}\".",
     )
 
@@ -55,7 +58,7 @@ def parse_args():
     parser.add_argument(
         "-d", "--details",
         type=str,
-        help="String of details to send - will attempt to convert from json.  Can be set with " \
+        help="String of details to send - will attempt to convert from json.  Can be set with "
              "PAGERDUTY_DETAILS env var.  Defaults to full event data."
     )
 
@@ -63,7 +66,7 @@ def parse_args():
     parser.add_argument(
         "-S", "--summary",
         type=str,
-        help="String for alert summary.  Can be set with PAGERDUTY_SUMMARY env var.  Defaults " \
+        help="String for alert summary.  Can be set with PAGERDUTY_SUMMARY env var.  Defaults "
              "to \"{namespace/{entity name}/{check name} : {check output}\"",
     )
 
@@ -71,7 +74,7 @@ def parse_args():
     parser.add_argument(
         "--source",
         type=str,
-        help="Define the 'source' field for the alert, to indicate where this alert is coming " \
+        help="Define the 'source' field for the alert, to indicate where this alert is coming "
              "from.  Can be set with PAGERDUTY_SOURCE env var. Defaults to the local host's FQDN",
     )
 
@@ -79,7 +82,7 @@ def parse_args():
     parser.add_argument(
         "-s", "--status",
         type=int,
-        help="Status of the check.  Can be set with PAGERDUTY_STATUS env var.  Defaults to " \
+        help="Status of the check.  Can be set with PAGERDUTY_STATUS env var.  Defaults to "
              "value of check status.  Valid values: 0 (Ok), 1 (Warning), 2 (Critical)",
         choices=[0, 1, 2],
     )
@@ -92,8 +95,8 @@ def parse_args():
         help="The authentication token.  Can be set with PAGERDUTY_TOKEN env var."
     )
 
-    args = parser.parse_args()
-    return args
+    parsed = parser.parse_args(args)
+    return parsed
 
 
 def set_default_args(args, event):
@@ -120,7 +123,7 @@ def set_default_args(args, event):
 
     if args.status is None:
         default = event['check']['status']
-        args.status = os.environ.get('PAGERDUTY_STATUS', default)
+        args.status = int(os.environ.get('PAGERDUTY_STATUS', default))
 
     if args.source is None:
         default = socket.getfqdn()
@@ -132,7 +135,7 @@ def set_default_args(args, event):
         args.details = os.environ.get('PAGERDUTY_DETAILS', default)
 
     # If it's a template, process it
-    if TEMPLATE_RE.search(args.details):
+    if isinstance(args.details, str) and TEMPLATE_RE.search(args.details):
         args.details = parse_template(args.details, event)
 
     # Convert from JSON, if needed
@@ -158,6 +161,8 @@ def parse_template(templ_str, event):
     ref = event
     loc = []
     for token in tokens:
+        token = token.strip()
+
         # Skip the blank tokens
         if not token:
             continue
