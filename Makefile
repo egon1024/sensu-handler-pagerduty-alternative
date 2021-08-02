@@ -1,3 +1,5 @@
+.PHONY: test style pylint flake8
+
 test:
 	PYTHONPATH=".:./tests" pytest --capture=sys --cov-report term-missing --cov=sensu_handler_pagerduty_alternative ${PYTEST_FLAGS}
 
