@@ -30,7 +30,7 @@ EVENT = {
     }
 }
 
-class TestSetDefaulArgs(unittest.TestCase):
+class TestSetDefaultArgs(unittest.TestCase):
     def setup_method(self, method):
         self.func = sensu_handler_pagerduty_alternative.set_default_args
         self.args = MagicMock()
