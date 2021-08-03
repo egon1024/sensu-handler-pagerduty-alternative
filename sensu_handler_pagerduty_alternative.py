@@ -148,7 +148,7 @@ def set_default_args(args, event):
 
 def parse_template(templ_str, event):
     """
-    Parses a template string and find the corresponding element in an event data strcuture.
+    Parses a template string and find the corresponding element in an event data structure.
 
     This is a highly simplified version of the templating that is supported by
     the Golang template code - it supports only a single reference to a sub
