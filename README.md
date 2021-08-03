@@ -70,25 +70,27 @@ The source field defined for the alert is a simple, non-templated string, as wit
 
 ### Status
 
-This field allows one to explicitly define the status of the check for the handler, overriding the value defined in the event.  In the case of a `Warning` (1) or `Critical` (2), an incident will be triggered where as a value of `Ok` (0) will trigger a resolve of an incident.  If this field is not defined, the handler will read the value from the event data in the {check status} field.
+This field allows one to explicitly define the status of the check for the handler, overriding the value defined in the event.  In the case of a `Warning` (1) or `Critical` (2), an incident will be triggered whereas a value of `Ok` (0) will trigger a resolve of an incident.  If this field is not defined, the handler will read the value from the event data in the {check status} field.
 
 ### Details
 
-The function of this field is largely the driver for the creation of this module.  The desire was to be able to provide a customized data structure to [PagerDuty](https://pagerduty.com/).  This field supports a couple of options:
+The function of this field is largely the driver for the creation of this module.  The desire was to be able to provide a customized data structure to [PagerDuty](https://pagerduty.com/).  This field supports several options:
 
   1. A normal string.  Example: `This is some text that matters to me.`
-  2. A string that is JSON encoded (it will be decoded to be sent to [PagerDuty](https://pagerduty.com/).  Example: `"{\"field\": \"value\", \"something\": \"else\"}"`
-  3. A super simplified template reference. Example: `"{{ .check.metadata.annotations }}"`
+  2. A string that is JSON encoded (it will be decoded to be sent to [PagerDuty](https://pagerduty.com/) ).  Example: `"{\"field\": \"value\", \"something\": \"else\"}"`
+  3. A very simplified template reference. Example: `"{{ .check.metadata.annotations }}"`
 
-Number 1 is as described, a simple string value.  Number 2 is similar except that if the string value that is provided is a JSON encoded data structure, the handler will attempt to decode it and use the resulting data structure. 
+Option 1 is as described, a simple string value.
 
-Number 3 is a VERY simplified version of the templating employed by the [original handler](https://github.com/sensu/sensu-pagerduty-handler).  This allows the value to contain a single reference to a field within the event data structure.
+Option 2 is similar except that if the string value that is provided is a JSON encoded data structure, the handler will attempt to decode it and use the resulting data structure. 
+
+Option 3 is a VERY simplified version of the templating employed by the [original handler](https://github.com/sensu/sensu-pagerduty-handler).  This allows the value to contain a single reference to a field within the event data structure.
 
 ## Configuration
 
 ### Installation
 
-At this time, this plugin is NOT yet available as a Sensu asset.  It is recommended to be installed using a local virtualenv.
+At this time, this plugin is NOT yet available as a [Sensu asset](https://docs.sensu.io/sensu-go/latest/plugins/assets/).  It is recommended to be installed using a local virtualenv.
 
 ### Handler definition
 

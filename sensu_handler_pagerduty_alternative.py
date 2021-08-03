@@ -6,11 +6,9 @@ This module provides a handler for use with Sensu Go (https://sensu.io/)
 The intent of this module was to provide a mechanism for being able to pass a data structure
 (not just a string) through to the details of a PagerDuty alert.
 
-While similar to the PagerDuty handler from the folks as Sensu, there are some differences in the
+While similar to the PagerDuty handler from the folks at Sensu, there are some differences in the
 interface and attention should be paid to the documentation when using it.
 """
-
-# pylint disable=c0103
 
 # Built in imports
 import argparse
@@ -58,7 +56,7 @@ def parse_args(args):
     parser.add_argument(
         "-d", "--details",
         type=str,
-        help="String of details to send - will attempt to convert from json.  Can be set with "
+        help="String of details to send - will attempt to convert from JSON.  Can be set with "
              "PAGERDUTY_DETAILS env var.  Defaults to full event data."
     )
 
