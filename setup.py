@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='sensu-handler-pagerduty-alternative',
-    version='0.1.0',
+    version='0.2.0',
     author='Cole Tuininga',
     author_email='cole.tuininga+sensu-handler@gmail.com',
     description='A Sensu Go handler to communicate with PagerDuty',
