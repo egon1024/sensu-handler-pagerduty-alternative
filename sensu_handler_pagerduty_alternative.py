@@ -190,7 +190,7 @@ def send_to_pd(args):
         "custom_details": args.details,
     }
 
-    if args.status in (1, 2):
+    if args.status:
         session.trigger(
             summary=args.summary,
             source=source,
